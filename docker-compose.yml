@@ -1,0 +1,47 @@
+version: '3.4'
+
+volumes:
+  db-data: {}
+
+services:
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+    environment:
+      - BACKEND_HOST
+      - BACKEND_PORT
+      - DB_HOST=${MONGO_HOST}
+      - DB_PORT=${MONGO_PORT}
+      - DB_USER=${MONGO_USER}
+      - DB_PASSWORD=${MONGO_PASSWORD}
+      - DB_DATABASE=${MONGO_DATABASE}
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+  # frontend:
+  #   build: ./frontend
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - ./frontend:/frontend
+  #     - /frontend/node_modules
+  #   environment:
+  #     - FRONTEND_HOST
+  #     - FRONTEND_PORT
+  #     - BACKEND_URL
+  #   ports:
+  #     - "${FRONTEND_PORT}:${FRONTEND_PORT}"      
+  db:
+    image: mongo:3.4-xenial
+    restart: always
+    environment:
+      - MONGO_USER
+      - MONGO_PASSWORD
+      - MONGO_DATABASE
+    volumes:
+      - db-data:/data/db
+    expose:
+      - "${MONGO_PORT}"

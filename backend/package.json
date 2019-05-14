@@ -1,0 +1,34 @@
+{
+  "name": "Zappy-Backend",
+  "version": "1.0.0",
+  "description": "Zappy Backend ",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/mocha --timeout 100000  test/users.js"
+  },
+  "author": "Mahmoud Ahmed Mahmoud",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "chai": "^4.2.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "lodash": "^4.17.11",
+    "mocha": "^5.2.0",
+    "mongoose": "^5.0.11",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.7.0",
+    "path": "^0.12.7",
+    "socket.io": "^2.2.0",
+    "supertest": "^3.3.0",
+    "unidecode": "^0.1.8"
+  },
+  "devDependencies": {
+    "dotenv": "^5.0.1"
+  }
+}
