@@ -4,7 +4,7 @@ const express = require('express'),
 
 require(path.resolve('init','init.js'))(app);
 
-app.listen(process.env.PORT||5000,() => {
+app.listen(process.env.BACKEND_PORT,() => {
   console.info("Welcome to Zappy Tool, listen to %s", process.env.BACKEND_PORT);
 });
 

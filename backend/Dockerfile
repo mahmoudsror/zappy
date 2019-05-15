@@ -1,7 +1,17 @@
 FROM node:10.15-alpine
-WORKDIR /backend
-COPY package.json /backend
-RUN npm i
-RUN npm install -g nodemon
+
+# Update alpine packages
+RUN apk update add --no-cache yarn 
+
+# Add pm2
+RUN yarn global add pm2 && \
+  mkdir /backend
+
 COPY . /backend
-CMD [ "nodemon" ]
+
+# Enter backend dir
+WORKDIR /backend
+# install modules 
+RUN yarn install
+# Start server
+CMD pm2-runtime start ecosystem.config.js

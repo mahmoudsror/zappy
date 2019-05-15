@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 class Database {
 	async _connect() {
-		return await mongoose.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,{ useNewUrlParser: true })
+		return await mongoose.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_DATABASE}`,{ useNewUrlParser: true })
 			.then((conn) => {
 				console.info('Database connected successfully')
 				return conn
