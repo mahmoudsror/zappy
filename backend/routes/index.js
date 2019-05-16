@@ -1,6 +1,7 @@
 module.exports = function(app) {
 
   require('./tweetsRoutes.js')(app);
+  require('./slackRoutes.js')(app);
   
   app.get('/',function(req,res) {
     res.send("Welcome to zappy");

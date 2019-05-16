@@ -5,6 +5,7 @@ volumes:
 
 services:
   backend:
+    restart: always
     build: ./backend
     depends_on:
       - db
@@ -15,28 +16,30 @@ services:
       - BACKEND_HOST
       - BACKEND_PORT
       - NODE_ENV
-      - SLACK_ACCESS_TOKEN
-      - SLCACK_BOT_ACCESS_TOKEN
       - DB_HOST=${MONGO_HOST}
       - DB_PORT=${MONGO_PORT}
       - DB_USER=${MONGO_USER}
       - DB_PASSWORD=${MONGO_PASSWORD}
       - DB_DATABASE=${MONGO_DATABASE}
+      - CONSUMER_KEY
+      - CONSUMER_SECRET
+      - ACCESS_TOKEN_KEY
+      - ACCESS_TOKEN_SECRET
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
-  # frontend:
-  #   build: ./frontend
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - ./frontend:/frontend
-  #     - /frontend/node_modules
-  #   environment:
-  #     - FRONTEND_HOST
-  #     - FRONTEND_PORT
-  #     - BACKEND_URL
-  #   ports:
-  #     - "${FRONTEND_PORT}:${FRONTEND_PORT}"      
+  frontend:
+    build: ./frontend
+    depends_on:
+      - db
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+    environment:
+      - FRONTEND_HOST
+      - FRONTEND_PORT
+      - BACKEND_URL
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"      
   db:
     image: mongo:3.4-xenial
     restart: always

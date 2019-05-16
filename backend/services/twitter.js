@@ -1,6 +1,7 @@
 const path = require('path'),
   Tweets = require(path.resolve('models','Tweets.js'));
 const stub = require(path.resolve('public','tweets-stub.json'));
+const twitterAPI = require('twitter');
 module.exports = class twitter {
 
   async listTweets() {
@@ -12,11 +13,22 @@ module.exports = class twitter {
   
   }
   async getTweets() {
-    const savedTweetsCount = await this.saveTweets(stub);
+    const client = new twitterAPI({
+      consumer_key: process.env.CONSUMER_KEY,
+      consumer_secret: process.env.CONSUMER_SECRET,
+      access_token_key: process.env.ACCESS_TOKEN_KEY,
+      access_token_secret: process.env.ACCESS_TOKEN_SECRET
+    });
+
+    const params = {screen_name: 'nodejs'};
+    const tweetsResponse = await client.get('statuses/user_timeline', params);
+console.log(tweetsResponse)
+    const savedTweetsCount = await this.saveTweets(tweetsResponse);
     return savedTweetsCount;
   }
   async saveTweets(tweets) {
     const formattedTweets = await this.formatTweets(tweets);
+    console.log("formattedTweets : ", formattedTweets)
     const createdTweets = await Tweets.collection.insertMany(formattedTweets);
 
     return createdTweets.result.n;
