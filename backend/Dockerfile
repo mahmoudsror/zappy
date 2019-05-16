@@ -14,4 +14,5 @@ WORKDIR /backend
 # install modules 
 RUN yarn install
 # Start server
+#CMD [ "npm","run","test" ]
 CMD pm2-runtime start ecosystem.config.js

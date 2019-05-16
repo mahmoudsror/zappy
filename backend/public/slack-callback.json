@@ -1,0 +1,32 @@
+{
+  "token": "dqm8e1rlvrYmcKrDEfMvEfMM",
+  "team_id": "TJJ01PRC1",
+
+api_app_id: 'AJJGKJ03B',
+
+event: { client_msg_id: 'c46a5fe4-32a4-470e-b537-2724f2565c85',
+
+   type: 'message',
+
+   text: 'go',
+
+   user: 'UJQ979A6R',
+
+   ts: '1558010408.000800',
+
+   channel: 'DJJ01Q673',
+
+   event_ts: '1558010408.000800',
+
+   channel_type: 'im'
+  },
+
+type: 'event_callback',
+
+event_id: 'EvJRE05DFA',
+
+event_time: 1558010408,
+
+authed_users: [ 'UJQ979A6R'
+  ]
+}

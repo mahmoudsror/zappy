@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "./node_modules/.bin/mocha --timeout 100000  test/users.js"
+    "test": "./node_modules/.bin/mocha --timeout 100000  test/**/*.js"
   },
   "author": "Mahmoud Ahmed Mahmoud",
   "license": "ISC",

@@ -22,13 +22,11 @@ module.exports = class twitter {
 
     const params = {screen_name: 'nodejs'};
     const tweetsResponse = await client.get('statuses/user_timeline', params);
-console.log(tweetsResponse)
     const savedTweetsCount = await this.saveTweets(tweetsResponse);
     return savedTweetsCount;
   }
   async saveTweets(tweets) {
     const formattedTweets = await this.formatTweets(tweets);
-    console.log("formattedTweets : ", formattedTweets)
     const createdTweets = await Tweets.collection.insertMany(formattedTweets);
 
     return createdTweets.result.n;
