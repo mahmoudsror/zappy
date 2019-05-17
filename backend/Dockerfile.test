@@ -13,5 +13,5 @@ COPY . /backend
 WORKDIR /backend
 # install modules 
 RUN yarn install
-# Start server
-CMD pm2-runtime start ecosystem.config.js
+# Start process
+CMD tail -f /dev/null

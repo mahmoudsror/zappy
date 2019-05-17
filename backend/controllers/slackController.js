@@ -8,16 +8,27 @@ module.exports = {
     
     const { type } = req.body;
     if( type == "url_verification" ) {
+      
       return res.send({
-        challenge:req.body.challenge
+        challenge:req.body.challenge  
       })
     }
 
     if( type == "event_callback" && req.body.event.type=="message" ) {
+      
       let { text } = req.body.event;
+      
       text = text.toLowerCase();
-      if(text.includes('go')){
-        await twitter.getTweets();
+      
+      if( text.includes('go') ) {
+        const tweets = await twitter.getTweets();
+        if(!tweets)
+          return false;
+
+        const savedTweetsCount =  await twitter.saveTweets(tweets);
+        return res.status(200).send({
+          savedTweetsCount:savedTweetsCount
+        });
       }
     }
   }

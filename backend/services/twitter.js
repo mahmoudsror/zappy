@@ -1,42 +1,45 @@
 const path = require('path'),
   Tweets = require(path.resolve('models','Tweets.js'));
-const stub = require(path.resolve('public','tweets-stub.json'));
+
 const twitterAPI = require('twitter');
 module.exports = class twitter {
 
-  async listTweets() {
-  
-    const tweetsList = await Tweets
-      .find({})
-      .limit(10);
-    return tweetsList;
-  
-  }
-  async getTweets() {
+  async initTwitterAPI(){
     const client = new twitterAPI({
       consumer_key: process.env.CONSUMER_KEY,
       consumer_secret: process.env.CONSUMER_SECRET,
       access_token_key: process.env.ACCESS_TOKEN_KEY,
       access_token_secret: process.env.ACCESS_TOKEN_SECRET
     });
+    return client;
 
+  }
+
+  async listTweets() {
+    const tweetsList = await Tweets.find({});
+    return tweetsList;
+  
+  }
+
+  async getTweets() {
+    const client = await this.initTwitterAPI();
     const params = {screen_name: 'nodejs'};
     const tweetsResponse = await client.get('statuses/user_timeline', params);
-    const savedTweetsCount = await this.saveTweets(tweetsResponse);
-    return savedTweetsCount;
+    if(tweetsResponse.code)
+      return false;
+    return tweetsResponse;
+
   }
+
   async saveTweets(tweets) {
     const formattedTweets = await this.formatTweets(tweets);
     const createdTweets = await Tweets.collection.insertMany(formattedTweets);
-
     return createdTweets.result.n;
   
   }
 
-  async formatTweets(tweets) {
-
+  formatTweets(tweets) {
     const formattedTweets = [];
-    
     tweets.forEach(tweet => {
       formattedTweets.push({
         tweetId: tweet.id_str,

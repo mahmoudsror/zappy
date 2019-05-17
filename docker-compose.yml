@@ -27,6 +27,7 @@ services:
       - ACCESS_TOKEN_SECRET
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
+   
   frontend:
     build: ./frontend
     depends_on:

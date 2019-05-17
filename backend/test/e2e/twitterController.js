@@ -1,13 +1,23 @@
 const chai =  require('chai');
 const supertest = require('supertest');
 const app = require('../../app');
-const api = supertest(app);
+
 const common = require('../common');
 chai.should();
-describe("Tweets Controller ", () => {
+    describe("Twitter Controller", () => {
+      let api = null;
+      let server = null;
+      before(function(done){
+        server = app.listen(done);
+        api = supertest.agent(server);
+      });
 
-    describe("Get Tweets ", () => {
-      // Test to Create new user
+      // after(done => {
+      //   common.tearDown(done);
+      //   server.close();
+        
+      // })
+
       it("should return array of tweets", (done) => {
         api.get('/tweets')
         .end((err, res) => {
@@ -17,9 +27,6 @@ describe("Tweets Controller ", () => {
         });
       });
 
-      afterEach(done => {
-        common.tearDown(done)
-      })
-    });
 
-});
+    
+    });
