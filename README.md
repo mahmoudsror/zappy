@@ -6,12 +6,11 @@ Zappy is a tool that make it easy to get tweets for specific twitter account thr
 You can run zappy in this following simple steps :
 
 ```sh
-$ clone repository: https://github.com/mahmoudsror/zappy.git
+$ git clone  https://github.com/mahmoudsror/zappy.git
 
 $ cd zappy/
 
-$ cp backend/Dockerfile.dev Dockerfile
-
+$ cp backend/Dockerfile.dev backend/Dockerfile
 $ cp .env.dev .env
 
 $ docker-compose up -d --build
