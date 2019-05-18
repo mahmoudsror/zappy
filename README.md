@@ -33,7 +33,7 @@ Password : 123456zappy
 
 Well , Now you joined your zappyTeam Workspace .
 
-It's time to updated our event subscription URL 
+It's time to update our event subscription URL 
 
 If you are not linux user , download ngrok from the follwing : [ngrok](https://dl.equinox.io/ngrok/ngrok/stable)
 
