@@ -40,7 +40,8 @@ services:
       - FRONTEND_PORT
       - BACKEND_URL
     ports:
-      - "${FRONTEND_PORT}:${FRONTEND_PORT}"      
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    tty: true    
   db:
     image: mongo:3.4-xenial
     restart: always

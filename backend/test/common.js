@@ -7,7 +7,8 @@ module.exports={
   tearDown:done=>{
     Tweets.deleteMany({})
     .then(tweets=>{
-      done()
+      
     })
+  //  done()
   }
 }
