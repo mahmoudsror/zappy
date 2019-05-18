@@ -72,7 +72,7 @@ To run tests follow below steps :
 
 $ cd zappy/
 
-$ cp backend/Dockerfile.test Dockerfile
+$ cp backend/Dockerfile.test backend/Dockerfile
 
 $ cp .env.test .env
 
