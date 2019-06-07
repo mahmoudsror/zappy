@@ -27,7 +27,7 @@ Let's start :
 
 Go to this URL : [zappyteamworkspace](https://zappyteamworkspace.slack.com/)
 
-Username : zappdemo1234@gmail.com
+Username : zappydemo1234@gmail.com
 
 Password : 123456zappy
 
